@@ -1,0 +1,56 @@
+.login-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 320px;
+  padding: 30px;
+
+  box-shadow: 0 0 100px rgba(0,0,0,.08);
+}
+
+.login-box_title {
+  text-align: center;
+  margin-bottom: 20px;
+
+  img {
+    width: 40px;
+    margin-right: 10px;
+
+    vertical-align: middle;
+
+    // animation: rotateY 2s ease-out;
+  }
+
+  span {
+    font-size: 16px;
+    line-height: 40px;
+    color: #666;
+    text-transform: uppercase;
+
+  }
+}
+
+.login-box_icon {
+  font-size: 14px;
+}
+
+.login-box_submit {
+  width: 100%;
+}
+
+.login-box_prompt {
+
+  span {
+    color: #ccc;
+  }
+  span:last-child {
+    float: right;
+  }
+}
+
+@keyframes rotateY {
+  from { transform: rotateY(0deg) }
+  to { transform: rotateY(720deg) }
+}

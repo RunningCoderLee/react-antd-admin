@@ -1,0 +1,32 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "ie": "9"
+      },
+      "modules": false
+    }],
+    "react",
+    "stage-0"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel",
+        ["import", { "libraryName": "antd", "style": true }],
+        "lodash",
+        "transform-decorators-legacy",
+      ]
+    },
+    "production": {
+      "plugins": [
+        ["import", { "libraryName": "antd", "style": true }],
+        "lodash",
+        "transform-decorators-legacy",
+        ["transform-react-remove-prop-types", {
+          "ignoreFilenames": ["node_modules"]
+        }]
+      ]
+    }
+  }
+}
