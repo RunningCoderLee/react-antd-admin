@@ -138,6 +138,30 @@ module.exports = {
             }]
           },
 
+          {
+            test: /\.(js|jsx)$/,
+            include: `${paths.appNodeModules}/react_antd_admin_rest_api`,
+            use: [{
+              loader: require.resolve('babel-loader'),
+              options: {
+                // This is a feature of `babel-loader` for webpack (not Babel itself).
+                // It enables caching results in ./node_modules/.cache/babel-loader/
+                // directory for faster rebuilds.
+                cacheDirectory: true,
+                presets: [
+                  ["env", {
+                    "targets": {
+                      "ie": "9"
+                    },
+                    "modules": false
+                  }],
+                  "stage-0"
+                ]
+              },
+            }]
+          },
+
+
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
           // "style" loader turns CSS into JS modules that inject <style> tags.

@@ -1,28 +1,36 @@
 import { put, call, take, fork } from 'redux-saga/effects'
-// import { recordApi } from '$api/index';
+import { authenticationApi } from '$api/index'
 
 import * as actions from './redux'
 
 
-const fakeApi = password => new Promise((resolve, reject) => {
-  setTimeout(() => {
-    if (password === '123456') {
-      resolve({ name: '张三' })
-    }
+// const fakeApi = password => new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     if (password === '123456') {
+//       resolve({ name: '张三' })
+//     }
 
-    reject({ content: '密码错误' })
-  }, 3000)
-})
+//     reject({ content: '密码错误' })
+//   }, 3000)
+// })
 
 
-function* authorize(password) {
+function* authorize(userInfo) {
 
   yield put({ type: actions.LOG_IN.PENDING })
 
   try {
 
-    const { name } = yield call(fakeApi, password)
+    console.log('userInfo = ', userInfo)
+    console.log('authorizationApi = ', authenticationApi)
 
+    const postAuthentication =
+      authenticationApi.postAuthenticationWithHttpInfo.bind(authenticationApi)
+    const authInfo = yield call(postAuthentication
+      , userInfo)
+
+
+    console.log('authInfo = ', authInfo)
 
     yield put({
       type: actions.LOG_IN.SUCCESS,
@@ -55,9 +63,9 @@ export function* watchLogin() {
 
   while (true) {
 
-    const { password } = yield take(actions.REQUEST_LOG_IN)
+    const userInfo = yield take(actions.REQUEST_LOG_IN)
 
-    yield fork(authorize, password)
+    yield fork(authorize, userInfo)
 
   }
 

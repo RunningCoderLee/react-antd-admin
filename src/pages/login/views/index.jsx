@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { message } from 'antd'
+// import { message } from 'antd'
 import logo from '$media/logo.svg'
 import LogInForm from './form'
 import * as actions from '../redux'
@@ -15,7 +15,7 @@ class Login extends Component {
   static propTypes = {
     login   : PropTypes.func.isRequired,
     loading : PropTypes.bool.isRequired,
-    message : PropTypes.shape({}).isRequired,
+    // message : PropTypes.shape({}).isRequired,
   }
 
   constructor(props) {
@@ -25,40 +25,24 @@ class Login extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {
-      message: {
-        content: prevMsgContent,
-      },
-    } = this.props
-    const {
-      message: {
-        type: nextMsgType,
-        content: nextMsgContent,
-      },
-    } = nextProps
+  // componentWillReceiveProps(nextProps) {
+  // }
 
-    if (nextMsgContent && nextMsgContent !== prevMsgContent) {
-      this.showMessage(nextMsgContent, nextMsgType)
-    }
+  // showMessage = (content, type) => {
+  //   const { hideMessage } = this.state
 
-  }
+  //   if (!hideMessage && type === 'loading') {
+  //     const hide = message.loading(content, 0)
+  //     this.setState({ hideMessage: hide })
+  //     return
+  //   }
 
-  showMessage = (content, type) => {
-    const { hideMessage } = this.state
+  //   if (typeof hideMessage === 'function') {
+  //     hideMessage()
+  //   }
 
-    if (!hideMessage && type === 'loading') {
-      const hide = message.loading(content, 0)
-      this.setState({ hideMessage: hide })
-      return
-    }
-
-    if (typeof hideMessage === 'function') {
-      hideMessage()
-    }
-
-    message[type](content)
-  }
+  //   message[type](content)
+  // }
 
   render() {
     const { login, loading } = this.props

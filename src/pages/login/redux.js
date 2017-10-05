@@ -9,7 +9,7 @@ export const REQUEST_LOG_OUT = 'REQUEST_LOG_OUT'
 export const LOG_OUT = 'LOG_OUT'
 
 /* Action Creators */
-export const login = password => createAction(REQUEST_LOG_IN, password)
+export const login = userInfo => createAction(REQUEST_LOG_IN, userInfo)
 export const logout = () => createAction(REQUEST_LOG_OUT)
 
 

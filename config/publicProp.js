@@ -19,7 +19,7 @@ exports.resolve = {
   extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
   alias: {
     'react-native': 'react-native-web',
-    $Api : paths.appApi,
+    $api        : paths.appApi,
     $components : paths.appComponents,
     $config     : paths.appConfig,
     $layout     : paths.appLayout,

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Form, Button, Input, Icon } from 'antd'
+import IconFont from '$components/iconFont'
 
 const FormItem = Form.Item
 
@@ -14,6 +15,13 @@ class LogInBox extends Component {
     onLogin : PropTypes.func.isRequired,
   }
 
+  constructor(props) {
+    super(props)
+    this.state = {
+      showPassword: false,
+    }
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.form.validateFields((err, values) => {
@@ -21,6 +29,9 @@ class LogInBox extends Component {
         this.props.onLogin(values)
       }
     })
+  }
+  toggleVisibility = () => {
+    this.setState({ showPassword: !this.state.showPassword })
   }
 
   render() {
@@ -55,6 +66,13 @@ class LogInBox extends Component {
               prefix={
                 <Icon type="lock" className="login-box_icon" />
               }
+              suffix={
+                <IconFont
+                  type={this.state.showPassword ? 'show_price' : 'hide1'}
+                  onClick={this.toggleVisibility}
+                />
+              }
+              type={this.state.showPassword ? 'text' : 'password'}
               placeholder="密码：admin"
               size="large"
             />,

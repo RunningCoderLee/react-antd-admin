@@ -1,14 +1,14 @@
 import { createStore, compose, applyMiddleware } from 'redux'
-// import createSagaMiddleware from 'redux-saga'
+import createSagaMiddleware from 'redux-saga'
 // import _ from 'lodash';
 import { loadState, saveState } from '$utils/local-storage'; // eslint-disable-line
 
 
-// import rootSaga from '$saga'
+import rootSaga from '$saga'
 import rootReducer from './reducers'
 
 
-// const sagaMiddleware = createSagaMiddleware()
+const sagaMiddleware = createSagaMiddleware()
 
 
 // redux devTool
@@ -19,12 +19,12 @@ if (process.env.NODE_ENV === 'development') {
 
 
 function configureStore(middleware, preloadState) {
-  // const finalMiddleware = [sagaMiddleware, ...middleware]
+  const finalMiddleware = [sagaMiddleware, ...middleware]
 
   const store = createStore(
     rootReducer,
     preloadState,
-    composeEnhancers(applyMiddleware(middleware)),
+    composeEnhancers(applyMiddleware(...finalMiddleware)),
   )
 
   if (module.hot) {
@@ -35,7 +35,7 @@ function configureStore(middleware, preloadState) {
     })
   }
 
-  // sagaMiddleware.run(rootSaga)
+  sagaMiddleware.run(rootSaga)
 
   return store
 }
